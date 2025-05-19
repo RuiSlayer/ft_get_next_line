@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rucosta <rucosta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:05:10 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/14 23:15:03 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/19 18:39:39 by rucosta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>
+
+# define BUFFER_SIZE 5
+
+
 
 
 #endif
