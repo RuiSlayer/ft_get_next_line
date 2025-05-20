@@ -6,13 +6,13 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 18:20:56 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/20 19:06:02 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	line_length(char buff[])
+int	get_buff_length(char buff[])
 {
 	int	i;
 
@@ -23,6 +23,16 @@ int	line_length(char buff[])
 		++i;
 	return (i);
 }
+int	get_line_length(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+		++i;
+	return (i);
+}
+
 
 void	resize_buff(char buff[], int length)
 {
@@ -53,36 +63,41 @@ int	has_newline(char *buff)
 	return (0);
 }
 
-size_t	create_line(char *line, char buff[], size_t bytes_read)
+char	*create_line(char *line, char buff[])
 {
-	int		length;
+	int		buff_length;
+	int		line_length;
 	int		i;
+	int		j;
+	char	*new_line;
 
 	i = 0;
-	length = line_length(buff);
-	line = malloc(bytes_read + length + 1);
-	while (i < length)
-	{
-		line[i] = buff[i];
-		++i;
-	}
-	resize_buff(buff, length);
-	return (bytes_read + length + 1);
+	j = 0;
+	buff_length = get_buff_length(buff);
+	line_length = get_line_length(line);
+	new_line = malloc(line_length + buff_length + 1);
+
+	while (line[i] != '\0')
+		new_line[i++] = line[i];
+	while (i < line_length + buff_length)
+		new_line[i++] = buff[j++];
+	line[i] = '\0';
+	resize_buff(buff, buff_length);
+	return (new_line);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	size_t		bytes_read;
 	static char	buff[BUFFER_SIZE + 1];
 
 	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
 		return (NULL);
-	bytes_read = 0;
+	line = malloc(0);
 	while (!has_newline(buff))
 	{
 		read(fd, buff, BUFFER_SIZE);
-		bytes_read = create_line(line, buff, bytes_read);
+		line = create_line(line, buff);
 		if (has_newline(line))
 			break ;
 	}
