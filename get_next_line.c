@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 19:06:02 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/20 19:49:15 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ char	*create_line(char *line, char buff[])
 	buff_length = get_buff_length(buff);
 	line_length = get_line_length(line);
 	new_line = malloc(line_length + buff_length + 1);
-
+	if(!new_line)
+		return (NULL);
 	while (line[i] != '\0')
 		new_line[i++] = line[i];
-	while (i < line_length + buff_length)
+	while (j < buff_length)
+	{
 		new_line[i++] = buff[j++];
-	line[i] = '\0';
+	}
 	resize_buff(buff, buff_length);
 	return (new_line);
 }
@@ -113,7 +115,7 @@ int main()
 {
 	int     fd;
     char    *line;
-	fd = open("test", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 
 	while ((line = get_next_line(fd)) != NULL)
     {
