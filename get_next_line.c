@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 19:49:15 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/20 22:55:52 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,25 @@ int	get_line_length(char *line)
 }
 
 
-void	resize_buff(char buff[], int length)
+int	resize_buff(char buff[])
 {
-	int	i = 0;
+	int	i;
+	int	resto;
+	int	length;
 
+	length = get_buff_length(buff);
+	i = 0;
 	while (buff[length] != '\0')
 	{
 		buff[i++] = buff[length++];
 	}
+	resto = i;
 	buff[i] = '\0';
 	while (i < length)
 	{
 		buff[i++] = '\0';
 	}
+	return (resto);
 }
 
 int	has_newline(char *buff)
@@ -79,12 +85,14 @@ char	*create_line(char *line, char buff[])
 	if(!new_line)
 		return (NULL);
 	while (line[i] != '\0')
-		new_line[i++] = line[i];
+	{
+		new_line[i] = line[i];
+		++i;
+	}
 	while (j < buff_length)
 	{
 		new_line[i++] = buff[j++];
 	}
-	resize_buff(buff, buff_length);
 	return (new_line);
 }
 
@@ -92,14 +100,19 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	buff[BUFFER_SIZE + 1];
+	static int	resto;
+	ssize_t bytes_read;
 
 	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
 		return (NULL);
 	line = malloc(0);
 	while (!has_newline(buff))
 	{
-		read(fd, buff, BUFFER_SIZE);
+		bytes_read = read(fd, buff + resto, BUFFER_SIZE);
+		if(bytes_read == 0)
+			return (NULL);
 		line = create_line(line, buff);
+		resto = resize_buff(buff);
 		if (has_newline(line))
 			break ;
 	}
