@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rucosta <rucosta@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/19 20:16:44 by rucosta          ###   ########.fr       */
+/*   Updated: 2025/05/20 18:20:56 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	line_lenth(char buff[])
+int	line_length(char buff[])
 {
 	int	i;
 
@@ -24,20 +24,18 @@ int	line_lenth(char buff[])
 	return (i);
 }
 
-void	resize_buff(char buff[], int lenth)
+void	resize_buff(char buff[], int length)
 {
-	int		i;
+	int	i = 0;
 
-	i = 0;
-	while (buff[lenth])
+	while (buff[length] != '\0')
 	{
-		buff[i] = buff[lenth];
-		++i;
-		++lenth;
+		buff[i++] = buff[length++];
 	}
-	while (buff[lenth])
+	buff[i] = '\0';
+	while (i < length)
 	{
-		buff[i] = '\0';
+		buff[i++] = '\0';
 	}
 }
 
@@ -55,25 +53,21 @@ int	has_newline(char *buff)
 	return (0);
 }
 
-char	*create_line(char buff[])
+size_t	create_line(char *line, char buff[], size_t bytes_read)
 {
-	char	*line;
 	int		length;
 	int		i;
 
 	i = 0;
-	length = line_lenth(buff);
-	line = malloc(length + 1);
-	if (!line)
-		return (NULL);
+	length = line_length(buff);
+	line = malloc(bytes_read + length + 1);
 	while (i < length)
 	{
 		line[i] = buff[i];
 		++i;
 	}
-	line[i] = '\0';
 	resize_buff(buff, length);
-	return (line);
+	return (bytes_read + length + 1);
 }
 
 char	*get_next_line(int fd)
@@ -82,14 +76,16 @@ char	*get_next_line(int fd)
 	size_t		bytes_read;
 	static char	buff[BUFFER_SIZE + 1];
 
-	bytes_read = 1;
-	while (!has_newline(buff) && bytes_read > 0)
-	{
-		bytes_read = read(fd, buff, BUFFER_SIZE);
-	}
-	if (buff[0] == '\0')
+	if(fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
 		return (NULL);
-	line = create_line(buff);
+	bytes_read = 0;
+	while (!has_newline(buff))
+	{
+		read(fd, buff, BUFFER_SIZE);
+		bytes_read = create_line(line, buff, bytes_read);
+		if (has_newline(line))
+			break ;
+	}
 	return (line);
 }
 
@@ -107,8 +103,8 @@ int main()
 	while ((line = get_next_line(fd)) != NULL)
     {
         printf("%s\n", line);
-        free(line);
     }
+	free(line);
 	close(fd);
 	return 0;
 }
