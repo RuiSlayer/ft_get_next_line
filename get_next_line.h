@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:05:10 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 23:11:05 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/26 21:10:10 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 10000000
 
 char	*get_next_line(int fd);
 int		get_buff_length(char buff[]);

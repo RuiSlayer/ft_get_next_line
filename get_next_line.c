@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 23:12:02 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/26 21:10:42 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
 		return (NULL);
-	line = malloc(0);
-	while (!has_newline(buff))
+	line = malloc(1);
+	if (!line)
+		return (NULL);
+	while (1)
 	{
 		bytes_read = read(fd, buff + resto, BUFFER_SIZE);
-		if (bytes_read == 0)
+		if (bytes_read == 0 && !buff[0])
 			return (NULL);
 		line = create_line(line, buff);
 		resto = resize_buff(buff);
