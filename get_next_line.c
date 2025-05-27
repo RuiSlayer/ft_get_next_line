@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/26 21:10:42 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/27 01:49:05 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,19 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = read(fd, buff + resto, BUFFER_SIZE);
 		if (bytes_read == 0 && !buff[0])
+		{
+			free(line);
 			return (NULL);
+		}
 		line = create_line(line, buff);
 		resto = resize_buff(buff);
-		if (has_newline(line))
+		if (has_newline(line) || (buff[0] == '\0' && line[0] != '\0'))
 			break ;
 	}
 	return (line);
 }
 
-/* #include <fcntl.h>      // for open()
-#include <unistd.h>     // for close()
-#include <stdio.h>      // for printf()
-#include <stdlib.h>     // for free()
-
-int main()
+/* int main()
 {
 	int     fd;
     char    *line;
@@ -50,7 +48,7 @@ int main()
 
 	while ((line = get_next_line(fd)) != NULL)
     {
-        printf("%s\n", line);
+        printf("%s", line);
     }
 	free(line);
 	close(fd);

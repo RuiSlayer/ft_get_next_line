@@ -6,7 +6,7 @@
 /*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:53 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/20 23:07:10 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/27 01:49:13 by ruislayer        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ size_t	resize_buff(char buff[])
 	return (resto);
 }
 
-int	has_newline(char *buff)
+int	has_newline(char *line)
 {
 	int	i;
 
 	i = 0;
-	while (buff[i])
+	while (line[i])
 	{
-		if (buff[i] == '\n')
+		if (line[i] == '\n')
 			return (1);
 		++i;
 	}
