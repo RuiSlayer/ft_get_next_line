@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:53 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 20:12:14 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 20:19:58 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	resize_buff(char *buff)
 	{
 		buff[i++] = buff[length++];
 	}
-	while (i < length)
-	{
-		buff[i++] = '\0';
-	}
+	buff[i] = '\0';
 }
 
 int	has_newline(char *line)
