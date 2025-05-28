@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 20:25:58 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 23:05:12 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ char	*get_next_line(int fd)
     while ((line = get_next_line(fd)) != NULL)
     {
         printf("%s", line);
-        free(line);  // Don't forget to free the line after using it!
+        free(line);
     }
-
     close(fd);
     return (0);
 } */
