@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:53 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 18:51:57 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 19:52:01 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	get_line_length(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i] != '\0')
+	while (line && line[i] != '\0')
 		++i;
 	return (i);
 }
@@ -84,7 +84,7 @@ char	*create_line(char *line, char *buff)
 	new_line = malloc(line_length + buff_length + 1);
 	if (!new_line)
 		return (NULL);
-	while (line[i] != '\0')
+	while (line && line[i] != '\0')
 	{
 		new_line[i] = line[i];
 		++i;
@@ -93,5 +93,7 @@ char	*create_line(char *line, char *buff)
 	{
 		new_line[i++] = buff[j++];
 	}
+	new_line[i] = '\0';
+	free(line);
 	return (new_line);
 }
