@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:53 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/27 01:49:13 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/28 18:51:57 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	get_buff_length(char buff[])
+int	get_buff_length(char *buff)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ int	get_line_length(char *line)
 	return (i);
 }
 
-size_t	resize_buff(char buff[])
+size_t	resize_buff(char *buff)
 {
 	int		i;
 	size_t	resto;
@@ -69,7 +69,7 @@ int	has_newline(char *line)
 	return (0);
 }
 
-char	*create_line(char *line, char buff[])
+char	*create_line(char *line, char *buff)
 {
 	int		buff_length;
 	int		line_length;

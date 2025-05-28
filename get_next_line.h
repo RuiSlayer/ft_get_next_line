@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruislayer <ruislayer@student.42.fr>        +#+  +:+       +#+        */
+/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:05:10 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/27 01:50:23 by ruislayer        ###   ########.fr       */
+/*   Updated: 2025/05/28 18:52:24 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 #endif
 
 char	*get_next_line(int fd);
-int		get_buff_length(char buff[]);
+int		get_buff_length(char *buff);
 int		get_line_length(char *line);
-size_t	resize_buff(char buff[]);
+size_t	resize_buff(char *buff);
 int		has_newline(char *line);
-char	*create_line(char *line, char buff[]);
+char	*create_line(char *line, char *buff);
 
 #endif
