@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 19:51:53 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 20:03:34 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1];
 	char		*line;
-	int		bytes_read;
+	int			bytes_read;
 
 	bytes_read = BUFFER_SIZE;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
@@ -24,10 +24,10 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while (1)
 	{
-		if(buff[0] == '\0')
+		if (buff[0] == '\0')
 			bytes_read = read(fd, buff, BUFFER_SIZE);
-		if (bytes_read == 0 )
-			break;
+		if (bytes_read == 0)
+			break ;
 		if (bytes_read < 0)
 			return (free(line), NULL);
 		line = create_line(line, buff);
@@ -40,7 +40,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int main()
+/* int main()
 {
 	int fd = open("test.txt", O_RDONLY);
     if (fd < 0)
@@ -58,4 +58,4 @@ int main()
 
     close(fd);
     return (0);
-}
+} */
