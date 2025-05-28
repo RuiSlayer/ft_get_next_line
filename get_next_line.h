@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:05:10 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 19:50:33 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 20:11:53 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 char	*get_next_line(int fd);
 int		get_buff_length(char *buff);
 int		get_line_length(char *line);
-size_t	resize_buff(char *buff);
+void	resize_buff(char *buff);
 int		has_newline(char *line);
 char	*create_line(char *line, char *buff);
 

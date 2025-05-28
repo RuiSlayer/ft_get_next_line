@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 20:03:34 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/28 20:10:46 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* int main()
+int main()
 {
 	int fd = open("test.txt", O_RDONLY);
     if (fd < 0)
@@ -58,4 +58,4 @@ char	*get_next_line(int fd)
 
     close(fd);
     return (0);
-} */
+}
