@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 23:05:12 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/31 23:52:33 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 
 /* int main()
 {
-	int fd = open("test.txt", O_RDONLY);
+	int fd = open("big_line_no_nl", O_RDONLY);
     if (fd < 0)
     {
         perror("Error opening file");

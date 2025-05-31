@@ -6,7 +6,7 @@
 /*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:05:10 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/28 23:01:27 by slayer           ###   ########.fr       */
+/*   Updated: 2025/05/29 01:32:12 by slayer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdint.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 #endif
 
 char	*get_next_line(int fd);
