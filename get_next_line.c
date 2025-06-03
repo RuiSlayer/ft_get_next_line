@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slayer <slayer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rucosta <rucosta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/05/31 23:52:33 by slayer           ###   ########.fr       */
+/*   Updated: 2025/06/03 18:55:43 by rucosta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 		if (buff[0] == '\0')
 			bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read == 0)
-			break ;
+			return (line);
 		if (bytes_read < 0)
 			return (free(line), NULL);
 		line = create_line(line, buff);
@@ -40,9 +40,9 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* int main()
+int main()
 {
-	int fd = open("big_line_no_nl", O_RDONLY);
+	int fd = open("test.txt", O_RDONLY);
     if (fd < 0)
     {
         perror("Error opening file");
@@ -57,4 +57,4 @@ char	*get_next_line(int fd)
     }
     close(fd);
     return (0);
-} */
+}
