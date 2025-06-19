@@ -6,7 +6,7 @@
 /*   By: rucosta <rucosta@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 23:04:35 by ruislayer         #+#    #+#             */
-/*   Updated: 2025/06/03 18:55:43 by rucosta          ###   ########.fr       */
+/*   Updated: 2025/06/19 22:00:05 by rucosta          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 
 	bytes_read = BUFFER_SIZE;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &buff, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	while (1)
@@ -39,7 +39,7 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
+/* 
 int main()
 {
 	int fd = open("test.txt", O_RDONLY);
@@ -57,4 +57,4 @@ int main()
     }
     close(fd);
     return (0);
-}
+} */
